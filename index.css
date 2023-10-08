@@ -149,6 +149,7 @@ main {
 .header-button {
   color: var(--c-text-action);
   text-decoration: none;
+  cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -169,11 +170,15 @@ main {
 }
 
 .header-button-tag {
+  color: var(--c-text-primary);
   padding-left: 0.5rem;
 }
 
-.header-button:hover,
-.header-button:focus {
+.header-button svg {
+  color: var(--c-text-primary);
+}
+
+.header-button:hover {
   border-color: var(--c-accent-primary);
   color: var(--c-accent-primary);
 }
