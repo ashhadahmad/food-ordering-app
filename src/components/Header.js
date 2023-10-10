@@ -1,7 +1,10 @@
-import { ShoppingCartSimple } from "@phosphor-icons/react";
+import { ShoppingCartSimple, SignIn } from "@phosphor-icons/react";
+import { useState } from "react";
 import Logo from "../assets/svg/logo.svg";
 
 const Header = () => {
+  const [buttonName, setButtonName] = useState("Login");
+
   return (
     <header className="header">
       <div className="header-content responsive-wrapper">
@@ -22,6 +25,17 @@ const Header = () => {
             <a href="#" className="header-button">
               <ShoppingCartSimple weight="bold" />
               <span className="header-button-tag">Cart</span>
+            </a>
+            <a
+              href="#"
+              className="header-button"
+              onClick={() => {
+                if (buttonName === "Login") setButtonName("Logout");
+                else setButtonName("Login");
+              }}
+            >
+              <SignIn weight="bold" />
+              <span className="header-button-tag">{buttonName}</span>
             </a>
           </div>
         </div>

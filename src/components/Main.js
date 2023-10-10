@@ -4,9 +4,14 @@ import Card from "./Card";
 
 const Main = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
+  const [searchText, setSearchText] = useState("");
+  const [filteredListOfRestaurants, setFilteredListOfRestaurants] = useState(
+    []
+  );
+
   useEffect(() => {
     fetchRestaurants();
-  });
+  }, []);
 
   const fetchRestaurants = async () => {
     const restaurantData = await fetch(
@@ -15,6 +20,10 @@ const Main = () => {
     const json = await restaurantData.json();
     // Optional Chaining
     setListOfRestaurants(
+      json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+
+    setFilteredListOfRestaurants(
       json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
@@ -35,10 +44,9 @@ const Main = () => {
               className="header-button"
               onClick={() => {
                 const filteredRestaurants = listOfRestaurants.filter(
-                  (restaurant) => restaurant.info.avgRatingString >= 4.0
+                  (restaurant) => restaurant.info.avgRating >= 4.0
                 );
-                console.log(filteredRestaurants);
-                setListOfRestaurants(filteredRestaurants);
+                setFilteredListOfRestaurants(filteredRestaurants);
               }}
             >
               <CookingPot weight="bold" />
@@ -46,14 +54,33 @@ const Main = () => {
             </a>
           </div>
           <div className="search">
-            <input type="text" placeholder="Search" />
-            <button type="submit">
+            <input
+              type="text"
+              placeholder="Search"
+              value={searchText}
+              onChange={(e) => {
+                setSearchText(e.target.value);
+              }}
+            />
+            <button
+              type="submit"
+              onClick={() => {
+                const filteredRestaurants = listOfRestaurants.filter(
+                  (restaurant) => {
+                    return restaurant.info.name
+                      .toLowerCase()
+                      .includes(searchText.toLowerCase());
+                  }
+                );
+                setFilteredListOfRestaurants(filteredRestaurants);
+              }}
+            >
               <MagnifyingGlass weight="bold" />
             </button>
           </div>
         </div>
         <div className="card-grid">
-          {listOfRestaurants.map((restaurant) => (
+          {filteredListOfRestaurants.map((restaurant) => (
             <Card key={restaurant.info.id} restaurant={restaurant} />
           ))}
         </div>
