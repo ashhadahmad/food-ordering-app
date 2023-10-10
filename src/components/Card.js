@@ -9,7 +9,7 @@ const Card = ({ restaurant }) => {
     lastMileTravelString,
     costForTwoString,
     avgRating,
-  } = restaurant?.data;
+  } = restaurant?.info;
 
   return (
     <a href="#" className="card">
