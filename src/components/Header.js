@@ -1,5 +1,6 @@
 import { ShoppingCartSimple, SignIn } from "@phosphor-icons/react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Logo from "../assets/svg/logo.svg";
 
 const Header = () => {
@@ -19,9 +20,9 @@ const Header = () => {
         <div className="header-navigation">
           <div className="header-navigation-left-links"></div>
           <div className="header-navigation-right-links">
-            <a href="#"> Home </a>
-            <a href="#"> About Us </a>
-            <a href="#"> Contact Us </a>
+            <Link to="/">Home</Link>
+            <Link to="/about">About</Link>
+            <Link to="/contact">Contact</Link>
             <a href="#" className="header-button">
               <ShoppingCartSimple weight="bold" />
               <span className="header-button-tag">Cart</span>

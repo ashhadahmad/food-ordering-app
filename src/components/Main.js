@@ -59,7 +59,16 @@ const Main = () => {
               placeholder="Search"
               value={searchText}
               onChange={(e) => {
-                setSearchText(e.target.value);
+                const searchTerm = e.target.value;
+                setSearchText(searchTerm);
+                const filteredRestaurants = listOfRestaurants.filter(
+                  (restaurant) => {
+                    return restaurant.info.name
+                      .toLowerCase()
+                      .includes(searchTerm.toLowerCase());
+                  }
+                );
+                setFilteredListOfRestaurants(filteredRestaurants);
               }}
             />
             <button
