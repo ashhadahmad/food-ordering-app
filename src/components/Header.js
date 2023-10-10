@@ -10,12 +10,12 @@ const Header = () => {
     <header className="header">
       <div className="header-content responsive-wrapper">
         <div className="page-logo">
-          <a href="/">
+          <Link to="/">
             <div>
               <img src={Logo} />
             </div>
             <div className="page-title">Food App</div>
-          </a>
+          </Link>
         </div>
         <div className="header-navigation">
           <div className="header-navigation-left-links"></div>
@@ -23,12 +23,12 @@ const Header = () => {
             <Link to="/">Home</Link>
             <Link to="/about">About</Link>
             <Link to="/contact">Contact</Link>
-            <a href="#" className="header-button">
+            <Link to="/" className="header-button">
               <ShoppingCartSimple weight="bold" />
               <span className="header-button-tag">Cart</span>
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              to="/"
               className="header-button"
               onClick={() => {
                 if (buttonName === "Login") setButtonName("Logout");
@@ -37,7 +37,7 @@ const Header = () => {
             >
               <SignIn weight="bold" />
               <span className="header-button-tag">{buttonName}</span>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
