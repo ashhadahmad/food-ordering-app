@@ -2,10 +2,11 @@ import { ShoppingCartSimple, SignIn } from "@phosphor-icons/react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../assets/svg/logo.svg";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Header = () => {
   const [buttonName, setButtonName] = useState("Login");
-
+  const onlineStatus = useOnlineStatus();
   return (
     <header className="header">
       <div className="header-content responsive-wrapper">
@@ -18,7 +19,9 @@ const Header = () => {
           </Link>
         </div>
         <div className="header-navigation">
-          <div className="header-navigation-left-links"></div>
+          <div className="header-navigation-left-links">
+            <span>{onlineStatus ? "✅" : "🔴"}</span>
+          </div>
           <div className="header-navigation-right-links">
             <Link to="/">Home</Link>
             <Link to="/about">About</Link>

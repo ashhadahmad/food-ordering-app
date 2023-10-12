@@ -1,5 +1,6 @@
 import { CookingPot, MagnifyingGlass } from "@phosphor-icons/react";
 import { useEffect, useState } from "react";
+import useOnlineStatus from "../utils/useOnlineStatus";
 import Card from "./Card";
 
 const Main = () => {
@@ -8,6 +9,7 @@ const Main = () => {
   const [filteredListOfRestaurants, setFilteredListOfRestaurants] = useState(
     []
   );
+  const onlineStatus = useOnlineStatus();
 
   useEffect(() => {
     fetchRestaurants();
@@ -32,6 +34,10 @@ const Main = () => {
   if (listOfRestaurants.length == 0) {
     // Add Shimmer UI
     return <h1>Loading...</h1>;
+  }
+
+  if (!onlineStatus) {
+    return <h1>Seems like you're offline</h1>;
   }
 
   return (
