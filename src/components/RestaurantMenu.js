@@ -1,20 +1,11 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { CDN_URL, MENU_API } from "../utils/constants";
+import { CDN_URL } from "../utils/constants";
+import useRestaurantInfo from "../utils/useRestaurantMenu";
 
 const RestaurantMenu = () => {
-  const [restaurantInfo, setRestaurantInfo] = useState(null);
   const { resId } = useParams();
 
-  useEffect(() => {
-    fetchMenu();
-  }, []);
-
-  const fetchMenu = async () => {
-    const data = await fetch(MENU_API + resId);
-    const json = await data.json();
-    setRestaurantInfo(json);
-  };
+  const restaurantInfo = useRestaurantInfo(resId);
 
   if (restaurantInfo === null) {
     // Add Shimmer UI
