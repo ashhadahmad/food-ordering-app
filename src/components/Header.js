@@ -26,6 +26,7 @@ const Header = () => {
             <Link to="/">Home</Link>
             <Link to="/about">About</Link>
             <Link to="/contact">Contact</Link>
+            <Link to="/grocery">Grocery</Link>
             <Link to="/" className="header-button">
               <ShoppingCartSimple weight="bold" />
               <span className="header-button-tag">Cart</span>
