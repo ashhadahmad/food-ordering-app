@@ -14,13 +14,11 @@ const Grocery = lazy(() => import("./components/Grocery"));
 
 const App = () => {
   return (
-    <div className="app">
+    <div className="bg-white">
       <Header />
-      <main className="main">
-        <div className="responsive-wrapper">
-          <Outlet />
-        </div>
-      </main>
+      <div className="max-w-7xl m-auto p-4">
+        <Outlet />
+      </div>
     </div>
   );
 };
