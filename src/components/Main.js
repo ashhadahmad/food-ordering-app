@@ -1,7 +1,7 @@
 import { LinkIcon, MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import { useEffect, useState } from "react";
 import useOnlineStatus from "../utils/useOnlineStatus";
-import Card from "./Card";
+import Card, { withDiscountLabel } from "./Card";
 import ShimmerCard from "./ShimmerCard";
 
 const Main = () => {
@@ -18,7 +18,7 @@ const Main = () => {
 
   const fetchRestaurants = async () => {
     const restaurantData = await fetch(
-      `https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9943577&lng=77.6603704&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`
+      `https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`
     );
     const json = await restaurantData.json();
     // Optional Chaining
@@ -34,6 +34,8 @@ const Main = () => {
   if (!onlineStatus) {
     return <h1>Seems like you're offline</h1>;
   }
+
+  const DiscountCard = withDiscountLabel(Card);
 
   return (
     <>
@@ -101,12 +103,17 @@ const Main = () => {
       <main>
         <div className="py-6 grid lg:grid-cols-4 lg:gap-4 md:grid-cols-3 md:gap-4 grid-cols-2 gap-4">
           {listOfRestaurants.length == 0
-            ? [...Array(ShimmerCardCount)].map((e, i) => <ShimmerCard />)
-            : filteredListOfRestaurants.map((restaurant) => {
-                return (
+            ? [...Array(ShimmerCardCount)].map((e, i) => <ShimmerCard id={i} />)
+            : filteredListOfRestaurants.map((restaurant) =>
+                restaurant.info.aggregatedDiscountInfoV3 ? (
+                  <DiscountCard
+                    key={restaurant.info.id}
+                    restaurant={restaurant}
+                  />
+                ) : (
                   <Card key={restaurant.info.id} restaurant={restaurant} />
-                );
-              })}
+                )
+              )}
         </div>
       </main>
     </>

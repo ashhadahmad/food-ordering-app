@@ -2,9 +2,15 @@ import { Link } from "react-router-dom";
 import { CDN_URL } from "../utils/constants";
 
 const Card = ({ restaurant }) => {
-  console.log(restaurant?.info);
-  const { cloudinaryImageId, name, cuisines, areaName, costForTwo, avgRating } =
-    restaurant?.info;
+  const {
+    cloudinaryImageId,
+    name,
+    cuisines,
+    areaName,
+    costForTwo,
+    avgRating,
+    aggregatedDiscountInfoV3,
+  } = restaurant?.info;
 
   return (
     <Link to={"/restaurant/" + restaurant.info.id}>
@@ -28,6 +34,24 @@ const Card = ({ restaurant }) => {
       </article>
     </Link>
   );
+};
+
+// Higher order component
+export const withDiscountLabel = (Card) => {
+  return (props) => {
+    const { header, subHeader } =
+      props.restaurant.info.aggregatedDiscountInfoV3;
+    return (
+      <div>
+        <label>
+          <div className="absolute z-10 bg-gray-900 text-white p-1 rounded-lg m-1 opacity-90">
+            {header + " " + subHeader}
+          </div>
+          <Card {...props} />
+        </label>
+      </div>
+    );
+  };
 };
 
 export default Card;
