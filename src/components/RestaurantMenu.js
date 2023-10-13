@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
-import { CDN_URL } from "../utils/constants";
 import useRestaurantInfo from "../utils/useRestaurantMenu";
+import RestaurantCategory from "./RestaurantCategory";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
@@ -19,25 +19,32 @@ const RestaurantMenu = () => {
     restaurantInfo?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]
       ?.card?.card?.itemCards;
 
+  const categories =
+    restaurantInfo?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+      (data) =>
+        data?.card?.card["@type"] ==
+        "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+    );
+
+  console.log(categories);
+
   return (
     <div>
-      <h1>{name}</h1>
-      <img src={CDN_URL + cloudinaryImageId} width={500}></img>
-      <h2>{cuisines.join(",")}</h2>
-      <h2>{costForTwoMessage}</h2>
-      <h2>{avgRating}</h2>
-      <ul>
-        {items?.map((item) => {
-          return (
-            <li key={item.card.info.id}>
-              <p>
-                {item.card.info.name} - Rs.
-                {(item.card.info.price || item.card.info.defaultPrice) / 100}
-              </p>
-            </li>
-          );
-        })}
-      </ul>
+      <div className="lg:flex lg:items-center lg:justify-between pt-5">
+        <div className="min-w-0 flex-1">
+          <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
+            {name}
+          </h2>
+        </div>
+      </div>
+      <main>
+        <div className="py-6">
+          {cuisines.join(", ")}
+          {categories.map((category, i) => (
+            <RestaurantCategory key={i} data={category?.card?.card} />
+          ))}
+        </div>
+      </main>
     </div>
   );
 };

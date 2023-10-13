@@ -38,7 +38,7 @@ const Main = () => {
   const DiscountCard = withDiscountLabel(Card);
 
   return (
-    <>
+    <div>
       <div className="lg:flex lg:items-center lg:justify-between pt-5">
         <div className="min-w-0 flex-1">
           <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
@@ -103,7 +103,9 @@ const Main = () => {
       <main>
         <div className="py-6 grid lg:grid-cols-4 lg:gap-4 md:grid-cols-3 md:gap-4 grid-cols-2 gap-4">
           {listOfRestaurants.length == 0
-            ? [...Array(ShimmerCardCount)].map((e, i) => <ShimmerCard id={i} />)
+            ? [...Array(ShimmerCardCount)].map((e, i) => (
+                <ShimmerCard key={i} />
+              ))
             : filteredListOfRestaurants.map((restaurant) =>
                 restaurant.info.aggregatedDiscountInfoV3 ? (
                   <DiscountCard
@@ -116,7 +118,7 @@ const Main = () => {
               )}
         </div>
       </main>
-    </>
+    </div>
   );
 };
 

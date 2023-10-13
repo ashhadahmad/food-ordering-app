@@ -14,17 +14,17 @@ const Card = ({ restaurant }) => {
 
   return (
     <Link to={"/restaurant/" + restaurant.info.id}>
-      <article class="shadow-md mx-auto max-w-sm transform hover:-translate-y-1 duration-300 hover:shadow-xl cursor-pointer rounded-lg">
-        <div class="overflow-hidden max-h-48">
+      <article className="shadow-md mx-auto max-w-sm transform hover:-translate-y-1 duration-300 hover:shadow-xl cursor-pointer rounded-lg">
+        <div className="overflow-hidden max-h-48">
           <img
-            class="w-full h-auto rounded-t-lg"
+            className="w-full h-auto rounded-t-lg"
             src={CDN_URL + cloudinaryImageId}
             alt=""
           />
         </div>
-        <div class="p-4 my-auto">
-          <h1 class="text-lg font-bold text-gray-700">{name}</h1>
-          <div class="text-md font-light leading-relaxed text-gray-400">
+        <div className="p-4 my-auto">
+          <h1 className="text-lg font-bold text-gray-700">{name}</h1>
+          <div className="text-md font-light leading-relaxed text-gray-400">
             <p className="overflow-hidden">{cuisines.join(",")}</p>
             <p>{areaName}</p>
             <p>{costForTwo}</p>
