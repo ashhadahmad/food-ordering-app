@@ -1,11 +1,8 @@
-import {
-  CheckIcon,
-  LinkIcon,
-  MagnifyingGlassIcon,
-} from "@heroicons/react/20/solid";
+import { LinkIcon, MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import { useEffect, useState } from "react";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import Card from "./Card";
+import ShimmerCard from "./ShimmerCard";
 
 const Main = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
@@ -14,7 +11,7 @@ const Main = () => {
     []
   );
   const onlineStatus = useOnlineStatus();
-
+  const ShimmerCardCount = 8;
   useEffect(() => {
     fetchRestaurants();
   }, []);
@@ -33,12 +30,6 @@ const Main = () => {
       json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
-
-  // Conditional Rendering
-  if (listOfRestaurants.length == 0) {
-    // Add Shimmer UI
-    return <h1>Loading...</h1>;
-  }
 
   if (!onlineStatus) {
     return <h1>Seems like you're offline</h1>;
@@ -105,26 +96,17 @@ const Main = () => {
               </button>
             </div>
           </span>
-
-          <span className="sm:ml-3">
-            <button
-              type="button"
-              className="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-            >
-              <CheckIcon
-                className="-ml-0.5 mr-1.5 h-5 w-5"
-                aria-hidden="true"
-              />
-              Publish
-            </button>
-          </span>
         </div>
       </div>
       <main>
         <div className="py-6 grid lg:grid-cols-4 lg:gap-4 md:grid-cols-3 md:gap-4 grid-cols-2 gap-4">
-          {filteredListOfRestaurants.map((restaurant) => (
-            <Card key={restaurant.info.id} restaurant={restaurant} />
-          ))}
+          {listOfRestaurants.length == 0
+            ? [...Array(ShimmerCardCount)].map((e, i) => <ShimmerCard />)
+            : filteredListOfRestaurants.map((restaurant) => {
+                return (
+                  <Card key={restaurant.info.id} restaurant={restaurant} />
+                );
+              })}
         </div>
       </main>
     </>
