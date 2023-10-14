@@ -1,5 +1,6 @@
 import { LinkIcon, MagnifyingGlassIcon } from "@heroicons/react/20/solid";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import UserContext from "../utils/UserContext";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import Card, { withDiscountLabel } from "./Card";
 import ShimmerCard from "./ShimmerCard";
@@ -10,6 +11,7 @@ const Main = () => {
   const [filteredListOfRestaurants, setFilteredListOfRestaurants] = useState(
     []
   );
+  const { loggedInUser, setUsername } = useContext(UserContext);
   const onlineStatus = useOnlineStatus();
   const ShimmerCardCount = 8;
   useEffect(() => {
@@ -98,6 +100,14 @@ const Main = () => {
               </button>
             </div>
           </span>
+          <input
+            className="border-2 border-gray-300 bg-white h-9 px-5 pr-16 rounded-lg text-sm focus:outline-none ml-2"
+            type="search"
+            name="search"
+            onChange={(e) => {
+              setUsername(e.target.value);
+            }}
+          />
         </div>
       </div>
       <main>

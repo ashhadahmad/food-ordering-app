@@ -25,7 +25,7 @@ const Card = ({ restaurant }) => {
         <div className="p-4 my-auto">
           <h1 className="text-lg font-bold text-gray-700">{name}</h1>
           <div className="text-md font-light leading-relaxed text-gray-400">
-            <p className="overflow-hidden">{cuisines.join(",")}</p>
+            <p className="overflow-hidden">{cuisines.join(", ")}</p>
             <p>{areaName}</p>
             <p>{costForTwo}</p>
             <p>{avgRating}</p>

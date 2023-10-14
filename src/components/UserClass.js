@@ -1,4 +1,5 @@
 import React from "react";
+import UserContext from "../utils/UserContext";
 
 class UserClass extends React.Component {
   constructor(props) {
@@ -24,6 +25,10 @@ class UserClass extends React.Component {
     }
     return (
       <div className="user-card">
+        {/* How to access context in a class based component */}
+        <UserContext.Consumer>
+          {({ loggedInUser }) => <h1>{loggedInUser}</h1>}
+        </UserContext.Consumer>
         <img src={user.avatar_url}></img>
         <h3>{user.name}</h3>
         <a href={user.html_url}>{user.login}</a>
