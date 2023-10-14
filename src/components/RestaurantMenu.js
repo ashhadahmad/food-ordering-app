@@ -1,9 +1,11 @@
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import useRestaurantInfo from "../utils/useRestaurantMenu";
 import RestaurantCategory from "./RestaurantCategory";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
+  const [showIndex, setShowIndex] = useState(null);
 
   const restaurantInfo = useRestaurantInfo(resId);
 
@@ -12,12 +14,7 @@ const RestaurantMenu = () => {
     return <h1>Loading...</h1>;
   }
 
-  const { name, cuisines, cloudinaryImageId, costForTwoMessage, avgRating } =
-    restaurantInfo?.data?.cards[0]?.card?.card?.info;
-
-  const items =
-    restaurantInfo?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]
-      ?.card?.card?.itemCards;
+  const { name, cuisines } = restaurantInfo?.data?.cards[0]?.card?.card?.info;
 
   const categories =
     restaurantInfo?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
@@ -25,8 +22,6 @@ const RestaurantMenu = () => {
         data?.card?.card["@type"] ==
         "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
     );
-
-  console.log(categories);
 
   return (
     <div>
@@ -41,7 +36,15 @@ const RestaurantMenu = () => {
         <div className="py-6">
           {cuisines.join(", ")}
           {categories.map((category, i) => (
-            <RestaurantCategory key={i} data={category?.card?.card} />
+            <RestaurantCategory
+              key={i}
+              data={category?.card?.card}
+              // Controlled component
+              showItem={i == showIndex ? true : false}
+              setShowIndex={() =>
+                showIndex == i ? setShowIndex(null) : setShowIndex(i)
+              }
+            />
           ))}
         </div>
       </main>
