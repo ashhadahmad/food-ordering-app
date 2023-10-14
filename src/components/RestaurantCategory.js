@@ -1,7 +1,7 @@
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import RestaurantItemList from "./RestaurantItemList";
 
-export default RestaurantCategory = ({ data, showItem, setShowIndex }) => {
+const RestaurantCategory = ({ data, showItem, setShowIndex }) => {
   const handleClick = () => setShowIndex();
   return (
     <div className="my-4 px-4 bg-slate-50 shadow-sm">
@@ -20,3 +20,5 @@ export default RestaurantCategory = ({ data, showItem, setShowIndex }) => {
     </div>
   );
 };
+
+export default RestaurantCategory;
