@@ -1,6 +1,6 @@
 import { CDN_URL } from "../utils/constants";
 
-export default RestaurantItemlList = ({ items }) => {
+const RestaurantItemList = ({ items }) => {
   return items.map((item) => {
     return (
       <div
@@ -29,3 +29,5 @@ export default RestaurantItemlList = ({ items }) => {
     );
   });
 };
+
+export default RestaurantItemList;
