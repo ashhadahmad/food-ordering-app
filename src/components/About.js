@@ -1,4 +1,4 @@
-import User from "./User";
+import UserClass from "./UserClass";
 
 const About = () => {
   return (
@@ -6,7 +6,7 @@ const About = () => {
       <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
         About
       </h2>
-      <User name={"Ashhad from class component"} />
+      <UserClass name={"Ashhad from class component"} />
     </div>
   );
 };

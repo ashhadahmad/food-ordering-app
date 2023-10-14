@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../assets/images/logo.svg";
+import UserContext from "../utils/UserContext";
 import useOnlineStatus from "../utils/useOnlineStatus";
 
 export default function Header() {
   const [buttonName, setButtonName] = useState("Login");
   const onlineStatus = useOnlineStatus();
+  const { loggedInUser } = useContext(UserContext);
 
   return (
     <header className="inset-x-0 top-0 shadow-sm bg-white">
@@ -59,6 +61,12 @@ export default function Header() {
             }}
           >
             {buttonName} <span aria-hidden="true">&rarr;</span>
+          </Link>
+          <Link
+            to="/"
+            className="self-center rounded-sm text-sm font-medium text-gray-500 transition-colors ease-out hover:text-black ml-4"
+          >
+            {loggedInUser}
           </Link>
         </div>
       </nav>
