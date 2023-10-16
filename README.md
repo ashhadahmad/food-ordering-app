@@ -1,6 +1,10 @@
 # Food App
-### Food ordering app using React
-![download](https://github.com/ashhadahmad/food-ordering-app/assets/26667288/8ab50f4f-188e-4091-a011-9dc920122d09)
+### Food ordering app using React (Frontend)
+
+Fetches data from Swiggy API
+
+![download](https://github.com/ashhadahmad/food-ordering-app/assets/26667288/a6719fcc-eab4-44bc-98a1-ef1bfe51490e)
+
 
 How to build ? 
 - Clone the app
