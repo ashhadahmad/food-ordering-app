@@ -92,7 +92,6 @@ const Main = () => {
                         .includes(searchText.toLowerCase());
                     }
                   );
-                  console.log(searchText);
                   setFilteredListOfRestaurants(filteredRestaurants);
                 }}
               >

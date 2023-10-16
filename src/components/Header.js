@@ -13,7 +13,6 @@ export default function Header() {
 
   // Subscribing to the store using out selector
   const cartItems = useSelector((store) => store.cart.items);
-  console.log(cartItems);
 
   return (
     <header className="inset-x-0 top-0 shadow-sm bg-white">
