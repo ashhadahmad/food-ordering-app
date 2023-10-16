@@ -5,9 +5,11 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import Error from "./components/Error";
 // import Grocery from "./components/Grocery"; (Normal Loading)
+import { Provider } from "react-redux";
 import Header from "./components/Header";
 import Main from "./components/Main";
 import RestaurantMenu from "./components/RestaurantMenu";
+import appStore from "./utils/appStore";
 import UserContext from "./utils/UserContext";
 
 // Lazy loading
@@ -21,14 +23,16 @@ const App = () => {
   }, []);
 
   return (
-    <UserContext.Provider value={{ loggedInUser: username, setUsername }}>
-      <div className="bg-white">
-        <Header />
-        <div className="max-w-7xl m-auto p-4">
-          <Outlet />
+    <Provider store={appStore}>
+      <UserContext.Provider value={{ loggedInUser: username, setUsername }}>
+        <div className="bg-white">
+          <Header />
+          <div className="max-w-7xl m-auto p-4">
+            <Outlet />
+          </div>
         </div>
-      </div>
-    </UserContext.Provider>
+      </UserContext.Provider>
+    </Provider>
   );
 };
 

@@ -1,4 +1,6 @@
+import { ShoppingCartIcon } from "@heroicons/react/20/solid";
 import { useContext, useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Logo from "../assets/images/logo.svg";
 import UserContext from "../utils/UserContext";
@@ -8,6 +10,9 @@ export default function Header() {
   const [buttonName, setButtonName] = useState("Login");
   const onlineStatus = useOnlineStatus();
   const { loggedInUser } = useContext(UserContext);
+
+  // Subscribing to the store using out selector
+  const cartItems = useSelector((store) => store.cart.items);
 
   return (
     <header className="inset-x-0 top-0 shadow-sm bg-white">
@@ -51,6 +56,13 @@ export default function Header() {
         <div className="flex flex-1 justify-end content-center">
           <div className="rounded-md text-sm font-medium text-gray-500 transition-colors ease-out hover:text-black mr-4 self-center">
             <span>Online status: {onlineStatus ? "🟢" : "🔴"}</span>
+          </div>
+          <div className="rounded-md text-sm font-medium text-gray-500 transition-colors ease-out hover:text-black mr-4 self-center">
+            <span>
+              {" "}
+              <ShoppingCartIcon className="w-4" />{" "}
+              <span>({cartItems.length})</span>
+            </span>
           </div>
           <Link
             to="/"
