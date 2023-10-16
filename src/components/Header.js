@@ -13,6 +13,7 @@ export default function Header() {
 
   // Subscribing to the store using out selector
   const cartItems = useSelector((store) => store.cart.items);
+  console.log(cartItems);
 
   return (
     <header className="inset-x-0 top-0 shadow-sm bg-white">
@@ -58,11 +59,12 @@ export default function Header() {
             <span>Online status: {onlineStatus ? "🟢" : "🔴"}</span>
           </div>
           <div className="rounded-md text-sm font-medium text-gray-500 transition-colors ease-out hover:text-black mr-4 self-center">
-            <span>
-              {" "}
-              <ShoppingCartIcon className="w-4" />{" "}
-              <span>({cartItems.length})</span>
-            </span>
+            <Link to="/cart">
+              <span>
+                <ShoppingCartIcon className="w-4" />{" "}
+                <span>({cartItems.length})</span>
+              </span>
+            </Link>
           </div>
           <Link
             to="/"

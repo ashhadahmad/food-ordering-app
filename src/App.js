@@ -6,6 +6,7 @@ import Contact from "./components/Contact";
 import Error from "./components/Error";
 // import Grocery from "./components/Grocery"; (Normal Loading)
 import { Provider } from "react-redux";
+import Cart from "./components/Cart";
 import Header from "./components/Header";
 import Main from "./components/Main";
 import RestaurantMenu from "./components/RestaurantMenu";
@@ -60,6 +61,7 @@ const appRouter = createBrowserRouter([
         ),
       },
       { path: "/restaurant/:resId", element: <RestaurantMenu /> },
+      { path: "/cart", element: <Cart /> },
     ],
     errorElement: <Error />,
   },
