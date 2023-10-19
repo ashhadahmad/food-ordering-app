@@ -75,12 +75,16 @@ export default function Header() {
           >
             {buttonName} <span aria-hidden="true">&rarr;</span>
           </Link>
-          <Link
-            to="/"
-            className="self-center rounded-sm text-sm font-medium text-gray-500 transition-colors ease-out hover:text-black ml-4"
-          >
-            {loggedInUser}
-          </Link>
+          {buttonName === "Login" ? (
+            <div></div>
+          ) : (
+            <Link
+              to="/"
+              className="self-center rounded-sm text-sm font-medium text-gray-500 transition-colors ease-out hover:text-black ml-4"
+            >
+              {loggedInUser}
+            </Link>
+          )}
         </div>
       </nav>
     </header>

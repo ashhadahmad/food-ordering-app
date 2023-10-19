@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useState } from "react";
+import { lazy, Suspense, useContext, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import About from "./components/About";
@@ -17,10 +17,11 @@ import UserContext from "./utils/UserContext";
 const Grocery = lazy(() => import("./components/Grocery"));
 
 const App = () => {
-  const [username, setUsername] = useState(" ");
+  const { loggedInUser } = useContext(UserContext);
+  const [username, setUsername] = useState(loggedInUser);
 
   useEffect(() => {
-    setUsername("AshhadFromAPI");
+    // setUsername(""); Check Authentication
   }, []);
 
   return (

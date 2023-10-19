@@ -101,8 +101,8 @@ const Main = () => {
           </span>
           <input
             className="border-2 border-gray-300 bg-white h-9 px-5 pr-16 rounded-lg text-sm focus:outline-none ml-2"
-            type="search"
-            name="search"
+            name="username"
+            placeholder="Username"
             onChange={(e) => {
               setUsername(e.target.value);
             }}
