@@ -2,7 +2,7 @@ import { ShoppingCartIcon } from "@heroicons/react/20/solid";
 import { useContext, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import Logo from "../assets/images/logo.svg";
+import logo from "../assets/images/logo.png";
 import UserContext from "../utils/UserContext";
 import useOnlineStatus from "../utils/useOnlineStatus";
 
@@ -20,7 +20,7 @@ export default function Header() {
         <div className="flex flex-1">
           <Link to="/" className="flex-row -m-1.5 p-1.5">
             <div className="flex flex-row items-center">
-              <img className="h-8 w-auto" src={Logo} alt="" />
+              <img className="h-8 w-auto" src={logo} alt="" />
               <div className="text-3xl font-bold text-black sm:text-2x ml-2">
                 Food App
               </div>
